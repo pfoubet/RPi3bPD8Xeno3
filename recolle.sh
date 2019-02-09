@@ -1,0 +1,25 @@
+#! /bin/sh
+
+SOURCE=RPi3bPDeb8Xeno3.0.5.img
+PRE=RPi3bPD8X3
+
+[ -e $SOURCE ] && rm -f $SOURCE
+touch $SOURCE
+for A in a b c d e f g h i j k l m n o p q r s t u v w x y z ; do
+for B in a b c d e f g h i j k l m n o p q r s t u v w x y z ; do
+for C in a b c d e f g h i j k l m n o p q r s t u v w x y z ; do
+  f=$A/$PRE$A$B$C
+  [ ! -e $f ] && break 3
+  cat $f >> $SOURCE
+done
+done
+done
+
+md5sum $SOURCE > test.md5
+cmp test.md5 verif.md5
+if [ $? -ne 0 ] ; then
+   echo "ERREUR dans la verification !!"
+else
+   echo "Vous pouvez utiliser $SOURCE !"
+   rm -f test.md5
+fi
