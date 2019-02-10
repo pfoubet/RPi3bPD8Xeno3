@@ -19,7 +19,9 @@ md5sum $SOURCE > test.md5
 cmp test.md5 verif.md5
 if [ $? -ne 0 ] ; then
    echo "ERREUR dans la verification !!"
+   echo "Refaire la commande git clone !"
 else
    echo "Vous pouvez utiliser $SOURCE !"
    rm -f test.md5
+   echo "Pour liberer de la place disque vous pouvez faire :\nrm -Rf ?"
 fi
